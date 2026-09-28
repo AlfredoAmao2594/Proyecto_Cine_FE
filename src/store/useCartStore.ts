@@ -19,7 +19,6 @@ export interface SelectedPremiere {
 interface CartState {
   items: CartItem[];
   selectedPremiere: SelectedPremiere | null;
-  /** Precio de 1 entrada, leído del backend (null mientras no se carga). */
   ticketPrice: number | null;
   selectPremiere: (premiere: SelectedPremiere) => void;
   setTicketPrice: (price: number) => void;
@@ -69,15 +68,13 @@ export const useCartStore = create<CartState>()(
     }
   )
 );
-// ---- Selectores: funciones puras, reutilizables en componentes y pruebas ----
+
 export const selectItemCount = (state: CartState): number =>
   state.items.reduce((sum, i) => sum + i.quantity, 0);
 
-/** Solo dulcería. En céntimos para evitar errores de decimales (0.1 + 0.2 = 0.30000000000000004). */
 export const selectProductsTotal = (state: CartState): number =>
   state.items.reduce((sum, i) => sum + Math.round(i.price * 100) * i.quantity, 0) / 100;
 
-/** Dulcería + 1 entrada. Es lo que se muestra; el backend recalcula y cobra lo mismo. */
 export const selectTotal = (state: CartState): number =>
   (Math.round(selectProductsTotal(state) * 100) + Math.round((state.ticketPrice ?? 0) * 100)) / 100;
 

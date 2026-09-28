@@ -1,7 +1,7 @@
 
 export default class ApiError extends Error {
-  readonly status?: number; // código HTTP (400, 401, 503...) o undefined si no hubo respuesta
-  readonly code?: string;   // "code" del JSON del backend
+  readonly status?: number;
+  readonly code?: string;
 
   constructor(message: string, status?: number, code?: string) {
     super(message);

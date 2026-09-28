@@ -10,8 +10,6 @@ import './index.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    {/* useTransitions={false}: navegaciones inmediatas. Si no, al vaciar el carrito tras la compra,
-        ProtectedRoute redirige a Dulcería antes de que termine la navegación a Home. */}
     <BrowserRouter useTransitions={false}>
       <ConfigProvider locale={esES} theme={theme}>
         <AntApp>

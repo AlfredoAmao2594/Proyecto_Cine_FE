@@ -14,7 +14,6 @@ interface PaymentFormProps {
   onSubmit: (values: PaymentFormValues) => void;
 }
 
-/** Solo captura y valida datos: no sabe de PayU ni del backend. */
 export default function PaymentForm({ initialValues, total, submitting, onSubmit }: PaymentFormProps) {
   const [form] = Form.useForm<PaymentFormValues>();
   const brand = getCardBrand(Form.useWatch('cardNumber', form));

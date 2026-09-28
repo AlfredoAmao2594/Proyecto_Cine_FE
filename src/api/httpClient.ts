@@ -5,11 +5,11 @@ import { useAuthStore } from '../store/useAuthStore';
 
 const httpClient = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
-  timeout: 40000, // PayU puede tardar hasta 30 s
+  timeout: 40000, 
   headers: { 'Content-Type': 'application/json' },
 });
 
-// Agrega el token a cada petición
+
 httpClient.interceptors.request.use((config) => {
   const { token } = useAuthStore.getState();
   if (token) {
@@ -18,7 +18,6 @@ httpClient.interceptors.request.use((config) => {
   return config;
 });
 
-// Convierte cualquier error en ApiError y cierra la sesión si el token ya no sirve
 httpClient.interceptors.response.use(
   (response) => response,
   (error: AxiosError<Partial<ApiResponse<unknown>>>) => {

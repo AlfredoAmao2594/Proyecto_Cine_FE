@@ -3,10 +3,9 @@ import type { DocumentType } from '../types/api';
 import { isExpired, isValidLuhn, onlyDigits } from '../utils/validators';
 
 
-/** Valores del formulario tal como los escribe el usuario (con máscaras). */
 export interface PaymentFormValues {
-  cardNumber: string;      // "4097 4400 0000 0004"
-  expiration: string;      // "12/30"
+  cardNumber: string;
+  expiration: string;
   cvv: string;
   cardHolderName: string;
   email: string;
@@ -27,7 +26,6 @@ const DOCUMENT_PATTERNS: Record<DocumentType, { regex: RegExp; message: string }
   PASAPORTE: { regex: /^[A-Za-z0-9]{6,12}$/, message: 'Entre 6 y 12 caracteres alfanuméricos' },
 };
 
-/** Las mismas reglas que valida el backend, para avisar ANTES de enviar. */
 export const paymentRules: Record<keyof PaymentFormValues, FormRule[]> = {
   cardNumber: [
     { required: true, message: 'Ingresa el número de tarjeta' },

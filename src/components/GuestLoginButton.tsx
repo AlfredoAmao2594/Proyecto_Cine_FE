@@ -24,7 +24,6 @@ export default function GuestLoginButton() {
     try {
       const session = await loginGuest();
       loginSuccess(session);
-      // Si venía de una ruta protegida, vuelve a ella; si no, a Dulcería
       const from = (location.state as LocationState | null)?.from;
       navigate(from ?? ROUTES.CANDYSTORE, { replace: true });
     } catch (error) {

@@ -16,7 +16,6 @@ export default function PaymentPage() {
   const { purchase, submitting } = usePurchase();
   useTicketPrice();
 
-  // Si entró con Google (role USER), correo y nombre llegan precargados, como pide el PDF
   const isGoogleUser = role === 'USER';
   const initialValues: Partial<PaymentFormValues> = {
     documentType: 'DNI',

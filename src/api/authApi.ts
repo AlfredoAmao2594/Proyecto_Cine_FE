@@ -12,7 +12,6 @@ export interface SessionInfo {
   role: Session['role'];
 }
 
-/** Valida que el token siga vigente. */
 export const getSession = async (): Promise<SessionInfo> => {
   const response = await httpClient.get<ApiResponse<SessionInfo>>('/auth/me');
   return response.data.data;

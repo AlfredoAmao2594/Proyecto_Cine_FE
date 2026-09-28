@@ -8,7 +8,6 @@ import { ROUTES } from '../app/routes';
 
 interface ProtectedRouteProps {
   children: ReactNode;
-  /** Si es true, además exige película elegida y productos en el carrito (pantalla Pago). */
   requireCart?: boolean;
 }
 

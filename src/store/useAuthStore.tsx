@@ -7,7 +7,7 @@ interface AuthData {
   name: string | null;
   email: string | null;
   role: Role | null;
-  expiresAt: number | null; // milisegundos
+  expiresAt: number | null;
 }
 
 interface AuthState extends AuthData {
@@ -23,7 +23,6 @@ const initialData: AuthData = {
   expiresAt: null,
 };
 
-// create<AuthState>()(...) con doble paréntesis: así TypeScript infiere bien los tipos con middlewares
 export const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
@@ -41,6 +40,5 @@ export const useAuthStore = create<AuthState>()(
   )
 );
 
-/** Hay token y no venció. */
 export const selectIsAuthenticated = (state: AuthState): boolean =>
   Boolean(state.token) && Date.now() < (state.expiresAt ?? 0);

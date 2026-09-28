@@ -45,7 +45,7 @@ export interface CartItemRequest {
 
 export interface PaymentRequest {
   cardNumber: string;
-  expirationDate: string; // "YYYY/MM"
+  expirationDate: string;
   cvv: string;
   cardHolderName: string;
   email: string;
@@ -59,7 +59,7 @@ export interface PaymentResult {
   state: PaymentState;
   transactionId?: string;
   orderId?: number;
-  operationDate?: number; // milisegundos
+  operationDate?: number;
   message: string;
   amount: number;
   referenceCode: string;
@@ -80,7 +80,6 @@ export interface CompleteResult {
   purchaseId: string | null;
 }
 
-/** Precio de la entrada de cine (1 por compra), configurado en complete-service. */
 export interface TicketPrice {
   price: number;
 }

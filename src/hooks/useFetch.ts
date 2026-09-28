@@ -7,11 +7,6 @@ interface FetchState<T> {
   reload: () => Promise<void>;
 }
 
-/**
- * Patrón cargando → datos | error → reintentar.
- * @param fetcher función async que devuelve los datos (ej. getPremieres).
- *        Debe ser estable: pásale una función importada, no una flecha nueva en cada render.
- */
 export default function useFetch<T>(fetcher: () => Promise<T>): FetchState<T> {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);

@@ -10,7 +10,6 @@ import { ROUTES } from '../app/routes';
 import type { PaymentFormValues } from '../components/paymentRules';
 
 
-/** Flujo de compra: payments → (si APPROVED) complete → pop-up → Home. */
 export default function usePurchase() {
   const navigate = useNavigate();
   const { message, modal, notification } = App.useApp();
@@ -18,7 +17,6 @@ export default function usePurchase() {
   const clearCart = useCartStore((state) => state.clearCart);
   const [submitting, setSubmitting] = useState(false);
 
-  /** Pop-up "compra correcta" que espera a que el usuario pulse el botón. */
   const showSuccess = (amount: number, transactionId: string) =>
     new Promise<void>((resolve) => {
       modal.success({
@@ -36,11 +34,9 @@ export default function usePurchase() {
 
   const purchase = async (form: PaymentFormValues) => {
     setSubmitting(true);
-    // Solo id y cantidad: el precio NO viaja, lo calcula el backend
     const items = cartItems.map(({ productId, quantity }) => ({ productId, quantity }));
 
     try {
-      // 1. Cobro con PayU (a través de complete-service)
       const payment = await pay({
         cardNumber: onlyDigits(form.cardNumber),
         expirationDate: toApiExpiration(form.expiration),

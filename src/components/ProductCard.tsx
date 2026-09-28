@@ -13,7 +13,6 @@ interface ProductCardProps {
   product: Product;
 }
 
-/** Nombre, descripción y precio (requisito del PDF) + selector de cantidad conectado al carrito. */
 export default function ProductCard({ product }: ProductCardProps) {
   const quantity = useCartStore(selectQuantityOf(product.id));
   const addItem = useCartStore((state) => state.addItem);

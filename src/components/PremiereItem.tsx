@@ -11,7 +11,6 @@ interface PremiereItemProps {
   onSelect: (premiere: Premiere) => void;
 }
 
-/** Una fila: imagen a la izquierda (clic → Login) y texto a la derecha. En móvil: imagen arriba. */
 export default function PremiereItem({ premiere, onSelect }: PremiereItemProps) {
   const { title, description, imageUrl, releaseDate } = premiere;
 
@@ -32,7 +31,6 @@ export default function PremiereItem({ premiere, onSelect }: PremiereItemProps) 
           <Title level={3} style={{ marginTop: 0 }}>{title}</Title>
           {releaseDate && (
             <Tag color="blue" style={{ marginBottom: 12 }}>
-              {/* T00:00:00 = hora local; sin eso, en Perú mostraría el día anterior */}
               Estreno: {dateFormatter.format(new Date(`${releaseDate}T00:00:00`))}
             </Tag>
           )}
